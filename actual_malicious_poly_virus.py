@@ -72,9 +72,9 @@ def receive_file(connection, port):
 #     finally:
 #         client.close()
 
-def get_last_4_chars(filename):
-    # Extract the last 4 characters from the filename
-    return filename[-7:-3]
+# def get_last_4_chars(filename):
+#     # Extract the last 4 characters from the filename
+#     return filename[-7:-3]
 
 def connect_to_server(port):
     server_ip = "127.0.0.1"  # Replace this with the IP address of your netcat server
@@ -82,25 +82,30 @@ def connect_to_server(port):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     try:
-        while True:
+        # while True:
             # Get the last 4 characters of the current script's filename
-            current_filename = __file__
-            print(current_filename)
-            last_4_chars = get_last_4_chars(current_filename)
+            # current_filename = __file__
+            # print(current_filename)
+            # # last_4_chars = get_last_4_chars(current_filename)
             
-            if int(last_4_chars) != port:
-                break
-            else:
-                port =(current_time % 6)* 1025
-                if port==0:
-                    port=1025 
+            # if int(last_4_chars) != port:
+            #     break
+            # else:
+        # port =(current_time % 6)* 1025
+        # if port==0:
+        #     port=1025 
 
-        print(f"before connection {port}")
-        try:
-            client.connect((server_ip, port))
-            print(f"after connection {port}")
-        except Exception as e :
-            print(f"No server exists at port {port} error is: {e}")
+        # print(f"before connection {port}")
+        while True:
+            try:
+                client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                client.settimeout(3)  # Set a timeout for the connection attempt
+                client.connect((server_ip, port))
+                print(f"Connected to server at port {port}")
+                # client.close()
+                break
+            except Exception as e :
+                print(f"No server exists at port {port} error is: {e}")
         
         print(f"before calling receivefile with port {port}")
         receive_file(client, port)
