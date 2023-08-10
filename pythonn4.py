@@ -6,5 +6,5 @@ def is_prime(num):
             return False
     return True
 
-limit = 100000
+limit = 1000000
 primes = [num for num in range(2, limit) if is_prime(num)]

@@ -7,6 +7,6 @@ def compute_sum(limit):
     return total_sum
 
 # Calculate the sum for a large range (adjust the limit as needed)
-sum_limit = 1000000
+sum_limit = 100000000
 result = compute_sum(sum_limit)
 print(result)

@@ -1,6 +1,6 @@
 import random
 
-num_simulations = 1000000
+num_simulations = 9000000
 
 def monte_carlo_simulation():
     # Some complex simulation logic
