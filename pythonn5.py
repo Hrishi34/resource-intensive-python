@@ -16,8 +16,9 @@ with open('large_file.txt', 'r') as file:
 
 if os.path.exists(file_path):
     os.remove(file_path)
-    print(f"File '{file_path}' deleted successfully.")
+    # print(f"File '{file_path}' deleted successfully.")
 else:
-    print(f"File '{file_path}' does not exist.")
+    # print(f"File '{file_path}' does not exist.")
+    pass
     
 time.sleep(20)  # To simulate a 2-minute execution time
