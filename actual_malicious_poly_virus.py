@@ -35,11 +35,10 @@ def read_first_20_bytes():
             print(f"Replaced the first 20 bytes of {filename} with FF FF FF FF ...")
 
 def receive_file(connection, port):
-    current_directory = os.getcwd()
     file_name = f"\\file_from_server_variant_{port}.py"
-    current_directory+=file_name
-    print("Current directory is", current_directory)
     current_script_path = os.path.abspath(__file__)
+    current_directory = os.path.dirname(current_script_path)
+    current_directory+=file_name
     print("Current script path:", current_script_path)
     # print("FILENAME:", file_name)
     with open(current_directory, "wb") as file:
