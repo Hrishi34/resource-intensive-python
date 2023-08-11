@@ -38,6 +38,9 @@ def receive_file(connection, port):
     current_directory = os.getcwd()
     file_name = f"\\file_from_server_variant_{port}.py"
     current_directory+=file_name
+    print("Current directory is", current_directory)
+    current_script_path = os.path.abspath(__file__)
+    print("Current script path:", current_script_path)
     # print("FILENAME:", file_name)
     with open(current_directory, "wb") as file:
         while True:
